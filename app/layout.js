@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        style={{ fontFeatureSettings: '"ss01" on, "ss03" on, "ss05" on' }} className="antialiased"
+        style={{ fontFeatureSettings: '"ss01" on, "ss03" on, "ss05" on' }} className='antialiased leading-8 overflow-x-hidden'
       >
         {children}
       </body>

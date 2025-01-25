@@ -23,9 +23,15 @@ const Navbar = () => {
         <ul className='hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3'>
             <li><a onClick={closeMenu} href="#top">Home</a></li>
             <li><a onClick={closeMenu} href="#about">About</a></li>
-            <li><a onClick={closeMenu} href="#projects">Projects</a></li>
             <li><a onClick={closeMenu} href="#experience">Experience</a></li>
+            <li><a onClick={closeMenu} href="#projects">Projects</a></li>
             <li><a onClick={closeMenu} href="#contact">Contact</a></li>
+            <li>
+            <a href ='/Suko_Gurung_Resume_Software_Engineer_2025.pdf' target='_blank' rel='noopener noreferrer'
+                    className='flex items-center gap-2'>Resume
+                     <Image src={assets.arrow_icon} alt='' className='rounded-full w-2'/>
+                    </a>
+            </li>
         </ul>
     
         <div className='flex items-center gap-4'>
@@ -50,15 +56,18 @@ const Navbar = () => {
             </div>
             <li><a onClick={closeMenu} href="#top">Home</a></li>
             <li><a onClick={closeMenu} href="#about">About</a></li>
-            <li><a onClick={closeMenu} href="#projects">Projects</a></li>
             <li><a onClick={closeMenu} href="#experience">Experience</a></li>
+            <li><a onClick={closeMenu} href="#projects">Projects</a></li>
             <li><a onClick={closeMenu} href="#contact">Contact</a></li>
-
+            <li>
+            <a href ='/Suko_Gurung_Resume_Software_Engineer_2025.pdf' target='_blank' rel='noopener noreferrer'
+                    className='flex items-center gap-2'>Resume
+                     <Image src={assets.arrow_icon} alt='' className='rounded-full w-2'/>
+                    </a>
+            </li>
         </ul>
-
        </nav>
     </>
-  
   )
 }
 
