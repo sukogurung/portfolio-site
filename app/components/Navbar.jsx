@@ -1,74 +1,86 @@
-import {assets} from '@/assets/assets'
-import Image from 'next/image'
-import React, {useRef} from 'react'
+'use client';
+import { assets } from '@/assets/assets';
+import Image from 'next/image';
+import React, { useState, useEffect, useRef } from 'react';
+import { useTheme } from './ThemeProvider';
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef(null);
 
-  const sideMenuRef = useRef();
-  const openMenu = () => {
-      sideMenuRef.current.style.transform = 'translateX(-16rem)';
-  }
-  const closeMenu = () => {
-      sideMenuRef.current.style.transform = 'translateX(16rem)';
-  }
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!navRef.current) return;
+      if (window.scrollY > 50) {
+        navRef.current.classList.add('nav-blur', theme === 'dark' ? 'bg-gray-900' : 'bg-white', 'bg-opacity-80');
+      } else {
+        navRef.current.classList.remove('nav-blur', 'bg-gray-900', 'bg-white', 'bg-opacity-80');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [theme]);
 
   return (
     <>
-        <nav className = 'w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50'> 
-            <a onClick={closeMenu} href="#top">
-                <Image src={assets.logo} alt=""
-                className='w-28 cursor-pointer mr-14'/>
+      <nav ref={navRef} className={`w-full fixed px-3 md:px-2 xl:px-[8%] py-1 flex items-center justify-between z-50 mt-0.5 rounded-xl border ${theme === 'dark' ? 'border-gray-700' : 'border-gray-300'} md:border-none`}>
+        <div className='hidden md:flex w-1/4'></div>
+        <a href="#top" role="button" className='pr-3'>
+          <Image src={assets.logo} alt="Logo" width={32} height={32} className='cursor-pointer rounded-sm' priority />
         </a>
-
-        <ul className='hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3'>
-            <li><a onClick={closeMenu} href="#top">Home</a></li>
-            <li><a onClick={closeMenu} href="#about">About</a></li>
-            <li><a onClick={closeMenu} href="#experience">Experience</a></li>
-            <li><a onClick={closeMenu} href="#projects">Projects</a></li>
-            <li><a onClick={closeMenu} href="#contact">Contact</a></li>
+        <div className='hidden md:flex items-center justify-between'>
+          <ul className={`flex items-center gap-6 lg:gap-8 rounded-full lg:px-2 py-[3px] border ${theme === 'dark' ? 'border-gray-700' : 'border-gray-300'}`}>
+            <li><a href="#top">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li>
-            <a href ='/Suko_Gurung_Resume_Software_Engineer_2025.pdf' target='_blank' rel='noopener noreferrer'
-                    className='flex items-center gap-2'>Resume
-                     <Image src={assets.arrow_icon} alt='' className='rounded-full w-2'/>
-                    </a>
+              <a href='/Suko_Gurung_Resume_Software_Engineer_2025.pdf' target='_blank' rel='noopener noreferrer' className='flex items-center gap-2'>
+                Resume
+                <Image src={assets.arrow_icon} alt='Arrow Icon' className='w-2.5'/>
+              </a>
             </li>
-        </ul>
-    
-        <div className='flex items-center gap-4'>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
 
-          <button>
-            <Image src={assets.moon_icon} alt="" className='w-6'/>
+        <div className='flex items-center pl-3'>
+          <button className='button-top w-9 h-9 rounded-md flex items-center justify-center border' onClick={toggleTheme} aria-label='Toggle Theme'>
+            <Image src={theme === 'dark' ? assets.sun_icon : assets.moon_icon} alt="Theme Icon" width={24} height={24} />
           </button>
-            <a onClick={closeMenu} href="#contact" className='hidden lg:flex items-center gap-3 px-10 
-            py-2.5 border border-gray-500 rounded-full ml-4'> Contact 
-            <Image src={assets.arrow_icon} alt="" className='w-3'/></a>
 
-          <button className='block md:hidden ml-3' onClick={openMenu}>
-            <Image src={assets.menu_black} alt="" className='w-6'/>
+          <button className='button-top md:hidden ml-3 w-9 h-9 rounded-md flex items-center justify-center border relative' onClick={toggleMenu} aria-label='Toggle Menu'>
+            <Image src={menuOpen ? (theme === 'dark' ? assets.close_white : assets.close_black) : assets.menu_black} alt="Menu Icon" width={16} height={16} className='z-50' />
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        <div className='hidden md:flex w-1/4'></div>
 
-        <ul ref={sideMenuRef} className='flex md:hidden flex-col gap-4 px-10 py-20 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 ease-in-out'>
-            <div className='absolute top-6 right-6'onClick={closeMenu}>
-              <Image src={assets.close_black} alt="" className='w-5 cursor-pointer'/>
-            </div>
-            <li><a onClick={closeMenu} href="#top">Home</a></li>
-            <li><a onClick={closeMenu} href="#about">About</a></li>
-            <li><a onClick={closeMenu} href="#experience">Experience</a></li>
-            <li><a onClick={closeMenu} href="#projects">Projects</a></li>
-            <li><a onClick={closeMenu} href="#contact">Contact</a></li>
-            <li>
-            <a href ='/Suko_Gurung_Resume_Software_Engineer_2025.pdf' target='_blank' rel='noopener noreferrer'
-                    className='flex items-center gap-2'>Resume
-                     <Image src={assets.arrow_icon} alt='' className='rounded-full w-2'/>
-                    </a>
-            </li>
+        {/* Mobile component */}
+        <ul className={`md:hidden flex flex-col gap-2 px-10 py-20 fixed right-0 top-0 bottom-0 w-64 z-40 h-screen ${theme === 'dark' ? 'bg-gray-900' : 'bg-rose-50'} transition-transform duration-500 ease-in-out ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <li><a href="#top" onClick={toggleMenu}>Home</a></li>
+          <li><a href="#about" onClick={toggleMenu}>About</a></li>
+          <li><a href="#experience" onClick={toggleMenu}>Experience</a></li>
+          <li><a href="#projects" onClick={toggleMenu}>Projects</a></li>
+          <li>
+            <a href='/Suko_Gurung_Resume_Software_Engineer_2025.pdf' target='_blank' rel='noopener noreferrer' className='flex items-center gap-2'>
+              Resume
+              <Image src={assets.arrow_icon} alt='Arrow Icon' className='h-3 w-3 rounded-sm' />
+            </a>
+          </li>
+          <li><a href="#contact" onClick={toggleMenu}>Contact</a></li>
         </ul>
-       </nav>
+      </nav>
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

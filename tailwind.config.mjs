@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
+  darkMode: "class", // Enables class-based dark mode
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,8 +11,15 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "var(--text-primary)",
+        secondary: "var(--text-secondary)",
+        accent: "var(--accent-color)",
+        surface: "var(--surface-color)",
+        border: "var(--border-color)",
       },
     },
   },
   plugins: [],
 };
+
+export default config;
