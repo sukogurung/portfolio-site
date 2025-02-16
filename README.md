@@ -11,6 +11,7 @@ Visit: [sukogurung.com](https://www.sukogurung.com)
 ## 🚀 Working On
 - 📊 Graphs and data visualizations
 - 🏷️ Interactive labels for each of the projects
+- 💻 Code refactoring
 
 ## 🛠️ Technology Stack
 - [Next.js](https://nextjs.org/) for the application framework
