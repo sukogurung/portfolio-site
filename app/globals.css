@@ -41,7 +41,8 @@ html {
   --border-color: #e5e7eb;
   --button-hover: #f3f4f6;
   --footer-border-color: #d1d5db; /* Light mode footer border color */
-
+  --surface-color: #ffffff; /* Add this variable */
+  --bg-color: #f9fafb; /* Add this variable */
 }
 
 .dark {
@@ -55,6 +56,8 @@ html {
   --border-color: #374151;
   --button-hover: #374151;
   --footer-border-color: #4b5563; /* Dark mode footer border color */
+  --surface-color: #1f2937; /* Add this variable */
+  --bg-color: #111827; /* Add this variable */
 }
 
 body {
@@ -76,8 +79,6 @@ body {
 .button-top:hover {
   background: var(--button-hover);
 }
-
-
 
 /* Cards */
 .card {
@@ -116,11 +117,9 @@ a {
   transition: color 0.2s ease-in-out;
 }
 
- a:hover {
+a:hover {
   color: var(--accent-secondary);
 }
-
-
 
 /* Typography */
 h1,
@@ -157,8 +156,6 @@ p {
   font-size: 1rem;
   line-height: 1.6;
 }
-
-
 
 /* Bento Grid Styles */
 .bento-grid {

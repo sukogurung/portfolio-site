@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 const Card = ({ children, className, ...props }) => {
   return (
-    <div className={`bg-green shadow-md rounded-lg ${className}`} {...props}>
+    <div 
+      className={`shadow-md rounded-lg ${className}`.trim()} 
+      {...props}
+    >
       {children}
     </div>
   );
@@ -18,4 +21,4 @@ Card.defaultProps = {
   className: '',
 };
 
-export default Card;
+export default React.memo(Card);
