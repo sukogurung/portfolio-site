@@ -71,7 +71,7 @@ const Navbar = () => {
           <li><a href="#experience" onClick={toggleMenu}>Experience</a></li>
           <li><a href="#projects" onClick={toggleMenu}>Projects</a></li>
           <li>
-            <a href='/Suko_Gurung_Resume_Software_Engineer_2025.pdf' target='_blank' rel='noopener noreferrer' className='flex items-center gap-2'>
+            <a href='/Suko_Gurung_Resume_website.pdf' target='_blank' rel='noopener noreferrer' className='flex items-center gap-2'>
               Resume
               <Image src={assets.arrow_icon} alt='Arrow Icon' className='h-3 w-3 rounded-sm' />
             </a>
