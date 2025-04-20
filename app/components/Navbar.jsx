@@ -43,7 +43,7 @@ const Navbar = () => {
             <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
             <li>
-              <a href='/Gurung_Suko_Resume_Software_Engineer_2025.pdf' target='_blank' rel='noopener noreferrer' className='flex items-center gap-2'>
+              <a href='/Suko_Gurung_Resume_website.pdf' target='_blank' rel='noopener noreferrer' className='flex items-center gap-2'>
                 Resume
                 <Image src={assets.arrow_icon} alt='Arrow Icon' className='w-2.5'/>
               </a>
